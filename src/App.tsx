@@ -4,10 +4,7 @@ import Card, { CardVariant } from './components/Card';
 function App() {
   return (
     <div className="App">
-      <Card width="200px" height="300px" variant={CardVariant.outlined}>
-        <button>Press</button>
-      </Card>
-      <Card width="200px" height="300px" variant={CardVariant.primary}>
+      <Card width="200px" height="300px" variant={CardVariant.outlined} onClick={() => console.log('text')}>
         <button>Press</button>
       </Card>
     </div>
