@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import React from 'react'
 
-interface ListProps<T>{
+interface ListProps<T> {
     items: T[],
-    renderItem: (item:T) => React.ReactNode
+    renderItem: (item: T) => React.ReactNode
 }
 
 export default function List<T>(props: ListProps<T>) {

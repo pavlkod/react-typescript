@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Card, { CardVariant } from './components/Card';
+import List from './components/List';
+import UserItem from './components/UserItem';
 import UserList from './components/UserList';
 import { IUser } from './types/types';
 
@@ -22,7 +24,10 @@ function App() {
       <Card width="200px" height="300px" variant={CardVariant.outlined} onClick={() => console.log('text')}>
         <button>Press</button>
       </Card>
-      {users.length > 0 && <UserList users={users} />}
+      <List
+        users={users}
+        renderItem={(user: IUser) => <UserItem key={user.id} user={user} />}
+      />
     </div>
   );
 }
