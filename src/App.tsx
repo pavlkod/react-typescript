@@ -25,7 +25,7 @@ function App() {
         <button>Press</button>
       </Card>
       <List
-        users={users}
+        items={users}
         renderItem={(user: IUser) => <UserItem key={user.id} user={user} />}
       />
     </div>
