@@ -7,6 +7,7 @@ import TodoItem from "./components/TodoItem";
 import UserItem from "./components/UserItem";
 
 import { ITodo, IUser } from "./types/types";
+import EventsExample from "./components/EventsExample";
 
 function App() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -29,11 +30,13 @@ function App() {
         console.error(e);
       }
     };
+
     fetchUsers();
     fetchTodos();
   }, []);
   return (
     <div className="App">
+      <EventsExample />
       <Card width="200px" height="300px" variant={CardVariant.outlined} onClick={() => console.log("text")}>
         <button>Press</button>
       </Card>
