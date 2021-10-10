@@ -1,48 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Card, { CardVariant } from "./components/Card";
-import List from "./components/List";
-import TodoItem from "./components/TodoItem";
-import UserItem from "./components/UserItem";
-
-import { ITodo, IUser } from "./types/types";
 import EventsExample from "./components/EventsExample";
+import TodosPage from "./components/TodosPage";
+import UserPage from "./components/UserPage";
 
 function App() {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [todos, setTodos] = useState<ITodo[]>([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const { data } = await axios.get<IUser[]>("https://jsonplaceholder.typicode.com/users");
-        setUsers(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    const fetchTodos = async () => {
-      try {
-        const { data } = await axios.get<ITodo[]>("https://jsonplaceholder.typicode.com/todos?_limit=10");
-        setTodos(data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
-    fetchUsers();
-    fetchTodos();
-  }, []);
   return (
-    <div className="App">
-      <EventsExample />
-      <Card width="200px" height="300px" variant={CardVariant.outlined} onClick={() => console.log("text")}>
-        <button>Press</button>
-      </Card>
-      <List items={users} renderItem={(user: IUser) => <UserItem key={user.id} user={user} />} />
-      <List items={todos} renderItem={(todo: ITodo) => <TodoItem key={todo.id} todo={todo} />} />
-    </div>
+    <Router>
+      <div>
+        <Link to="/">Home</Link>
+        <Link to="/users">Users</Link>
+        <Link to="/todos">Todos</Link>
+      </div>
+      <Route path="/" exact component={EventsExample} />
+      <Route path="/users" component={UserPage} />
+      <Route path="/todos" component={TodosPage} />
+    </Router>
   );
 }
 
